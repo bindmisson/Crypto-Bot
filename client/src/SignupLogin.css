@@ -1,0 +1,95 @@
+.welcome{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+  }
+  
+  #msgslogo{
+    width: auto;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .left{
+    background: #ac82ff;
+    height: 100vh;
+    width: 50vw;
+  }
+  
+  .right{
+    height: 100vh;
+    width: 50vw;
+  }
+  
+  /* ######################################################################################################################## */
+  /* ######################################################################################################################## */
+  /* ######################################################################################################################## */
+  
+  
+  .signbox{
+    width: fit-content;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding: 50px;
+    padding-top: 30px;
+    padding-bottom: 45px;
+    border-radius: 20px;
+    background: #ac82ff;
+  }
+  
+  .signbox input{
+    padding: 10px 16px;
+    border-radius: 13px;
+    outline: none;
+    border: #999 0.5px solid;
+    width: 280px;
+    margin-top: 5px;
+  }
+  
+  .signbox button{
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px 20px;
+    font-weight: 600;
+    font-size: 18px;
+    background: transparent;
+    border-radius: 10px;
+    border: #fff 3px solid;
+    color: #fff;
+    outline: none;
+    transition-duration: 150ms;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+  .signbox button:hover{
+    border: #6c5ce7 3px solid;
+    color: #6c5ce7;
+    background-color: #fff;
+  }
+  .signbox button:active{
+    border: #5844f0 2px solid;
+    color: #5844f0;
+    font-size: 15px;
+  }
+  
+  .signbox label{
+    padding: 8px;
+    font-weight: 500;
+  }
+  
+  .btmtext{
+    float: right;
+  }
+  
+  .signuplogin{
+    cursor: pointer;
+    color: #5e17eb;
+    font-weight: 600;
+  }
