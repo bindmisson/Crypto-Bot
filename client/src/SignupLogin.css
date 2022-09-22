@@ -4,7 +4,9 @@
     display: flex;
     flex-direction: row;
     overflow: hidden;
-    background: #fff;
+    /* background: #fff; */
+    background: #0d0933;
+
   }
   
   #msgslogo{
@@ -44,6 +46,11 @@
     padding-bottom: 45px;
     border-radius: 20px;
     background: #ac82ff;
+    background: #0d0933;
+    background: #fff;
+    color: white;
+    color: #0d0933;
+    border: #fff 0.1px solid;
     /* color: white; */
     /* background: #0d0933; */
   }

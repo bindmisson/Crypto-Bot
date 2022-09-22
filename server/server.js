@@ -16,7 +16,7 @@ const port=process.env.PORT || 8080
 app.use(express.urlencoded({extended:false}))
 app.use(express.json())
 app.use(cors({
-    origin:'http://192.168.43.57:3000'
+    origin:'http://192.168.162.115:3000'
 }))
 dotenv.config()
 
@@ -96,7 +96,7 @@ app.post('/signup', (req, res)=>{
         let hashedPass = await bcrypt.hash(req.body.pswd, 10)
         console.log(hashedPass.toString());
         userpass.create({user:req.body.user, name:req.body.name, pswd:hashedPass.toString()}, (err)=>{console.log(err);})
-        res.redirect('http://192.168.43.57:3000/')
+        res.redirect('http://192.168.162.115:3000/')
     }
     hashKar() 
 })

@@ -16,7 +16,7 @@ function SignupLogin() {
       async function checkUser() {
         console.log("trying2");
         const response = await fetch(
-          `http://192.168.43.57:8080/signup/checkUser?user=${e.target.value}`,
+          `http://192.168.162.115:8080/signup/checkUser?user=${e.target.value}`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -53,7 +53,7 @@ function SignupLogin() {
       const btn = document.getElementById("btnsub");
       async function checkPass() {
         const response = await fetch(
-          `http://192.168.43.57:8080/signup/checkPass?pass=${pass}`,
+          `http://192.168.162.115:8080/signup/checkPass?pass=${pass}`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -110,7 +110,7 @@ function SignupLogin() {
           {signup ? (
             <div className="authBox">
               <h1>Sign Up</h1><br />
-              <form action="http://192.168.43.57:8080/signup" method="post" className="signupform">
+              <form action="http://192.168.162.115:8080/signup" method="post" className="signupform">
                 <label htmlFor="name" id="namelbl">
                   Name
                 </label><br />
@@ -120,6 +120,7 @@ function SignupLogin() {
                   name="name"
                   placeholder="Full Name"
                   required
+                  autoComplete='off'
                 />
                 <br />
                 <label htmlFor=""></label><br /><br />
@@ -191,7 +192,7 @@ function SignupLogin() {
           ) : (
             <div className="authBox">
               <h1>Login</h1><br />
-              <form action="http://192.168.43.57:8080/login" method="post" className="loginform">
+              <form action="http://192.168.162.115:8080/login" method="post" className="loginform">
                 <label htmlFor="">Username</label><br />
                 <input type="text" name="user" placeholder="UserID" />
                 <br /><br /><br />
