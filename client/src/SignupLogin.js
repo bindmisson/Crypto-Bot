@@ -1,13 +1,14 @@
 import React from 'react'
 import './SignupLogin.css'
 import { useState } from 'react';
-import logo from './images/face.jpg'
+import logo from './images/sampleLogo.png'
 
 function SignupLogin() {
     const [signup, setsignup] = useState(false);
 
   function onUserChange(e) {
     if (true) {
+      console.log('Username Checking');
       const lbl1 = document.getElementById("userNotAv");
       const lbl2 = document.getElementById("wroPass");
       const btn = document.getElementById("btnsub");
@@ -15,7 +16,7 @@ function SignupLogin() {
       async function checkUser() {
         console.log("trying2");
         const response = await fetch(
-          `http://127.0.0.1:8000/signup/checkUser?user=${e.target.value}`,
+          `http://192.168.43.57:8080/signup/checkUser?user=${e.target.value}`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -52,7 +53,7 @@ function SignupLogin() {
       const btn = document.getElementById("btnsub");
       async function checkPass() {
         const response = await fetch(
-          `http://127.0.0.1:8000/signup/checkPass?pass=${pass}`,
+          `http://192.168.43.57:8080/signup/checkPass?pass=${pass}`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -109,7 +110,7 @@ function SignupLogin() {
           {signup ? (
             <div className="authBox">
               <h1>Sign Up</h1><br />
-              <form action="http://127.0.0.1:8000/signup" method="post" className="signupform">
+              <form action="http://192.168.43.57:8080/signup" method="post" className="signupform">
                 <label htmlFor="name" id="namelbl">
                   Name
                 </label><br />
@@ -190,7 +191,7 @@ function SignupLogin() {
           ) : (
             <div className="authBox">
               <h1>Login</h1><br />
-              <form action="http://127.0.0.1:8000/login" method="post" className="loginform">
+              <form action="http://192.168.43.57:8080/login" method="post" className="loginform">
                 <label htmlFor="">Username</label><br />
                 <input type="text" name="user" placeholder="UserID" />
                 <br /><br /><br />

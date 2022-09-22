@@ -4,9 +4,11 @@
     display: flex;
     flex-direction: row;
     overflow: hidden;
+    background: #fff;
   }
   
   #msgslogo{
+    height: 400px;
     width: auto;
     position: relative;
     left: 50%;
@@ -15,7 +17,8 @@
   }
   
   .left{
-    background: #ac82ff;
+    /* background: #ac82ff; */
+    background: #0d0933;
     height: 100vh;
     width: 50vw;
   }
@@ -41,6 +44,8 @@
     padding-bottom: 45px;
     border-radius: 20px;
     background: #ac82ff;
+    /* color: white; */
+    /* background: #0d0933; */
   }
   
   .signbox input{
@@ -90,6 +95,6 @@
   
   .signuplogin{
     cursor: pointer;
-    color: #5e17eb;
+    color: #0d0933;
     font-weight: 600;
   }
