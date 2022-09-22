@@ -13,7 +13,7 @@
     height: 400px;
     width: auto;
     position: relative;
-    left: 50%;
+    left: 54%;
     top: 50%;
     transform: translate(-50%, -50%);
   }
@@ -74,7 +74,11 @@
     background: transparent;
     border-radius: 10px;
     border: #fff 3px solid;
+    border: #0d0933 3px solid;
+    border: #1d165c 3px solid;
     color: #fff;
+    color: #0d0933;
+    color: #1d165c;
     outline: none;
     transition-duration: 150ms;
     cursor: pointer;
@@ -82,8 +86,11 @@
   }
   .signbox button:hover{
     border: #6c5ce7 3px solid;
+    border: #1d165c 3px solid;
     color: #6c5ce7;
-    background-color: #fff;
+    color: white;
+    background-color: #0d0933;
+    background: #1d165c;
   }
   .signbox button:active{
     border: #5844f0 2px solid;
