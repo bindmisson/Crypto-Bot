@@ -1,5 +1,6 @@
 .navbar{
-    min-width: 390px;
+    /* min-width: 290px; */
+    width: 320px;
     background: #fff;
     border-top-right-radius: 16px;
     border-bottom-right-radius: 16px;
@@ -7,7 +8,14 @@
     margin-right: 6px;
     font-weight: 600;
     box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.5);
+    text-align: center;
+    justify-content: center;
+    transition-duration: 200ms;
+}
 
+.menuBtn{
+    font-size: 28px;
+    cursor: pointer;
 }
 
 .navHeading{
@@ -16,42 +24,47 @@
     font-size: 25px;
     width: 100%;
     text-align: center;
-    margin-top: 60px;
+    margin-top: 0;
+    margin-top: -80px;
 }
 
 .navHeading2{
     color: #361cff;
+
 }
 
 .navList{
     width: fit-content;
-    margin-left: 50%;
-    transform: translateX(-50%);
-    margin-top: 100px;
+    /* margin-left: 50%; */
+    /* transform: translateX(-50%); */
+    margin-top: -100px;
+    text-align: left;
 }
 
 .navItem{
+    display: block;
     font-weight: 600;
     list-style: none;
     font-size: 19px;
-    margin-bottom: 20px;
-    padding: 17px 40px;
+    margin-bottom: 18px;
+    padding: 17px 60px;
     /* color: #2d11ff; */
     color: #000;
     transition-duration: 200ms;
     cursor: pointer;
     border-radius: 16px;
     /* height: 10px; */
-    width: 250px;
+    /* width: 290px; */
 }
 
 .navItem:hover{
     color: white;
     background: #361cff;
+    background: #130f40;
 }
 
 .navLogo{
-    font-size: 19px;
+    font-size: 20px;
     margin-right: 10px;
     vertical-align: middle;
     margin-top: -5px;
@@ -59,4 +72,9 @@
 
 #logo4{
     /* font-size: 20px; */
+}
+
+.menuBtn{
+    margin: 0;
+    padding: 0;
 }

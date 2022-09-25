@@ -8,7 +8,8 @@ function App() {
     <div className="App">
       <Routes>
         <Route exact path='/' element={<SignupLogin />} />
-        <Route path='/dashboard' element={<Home />} />
+        {/* <Route exact path='/:rid' element={<SignupLogin />} /> */}
+        <Route path='/home/*' element={<Home />} />
       </Routes>
     </div>
   );

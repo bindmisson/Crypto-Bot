@@ -53,7 +53,8 @@
     border: #fff 0.1px solid;
     /* color: white; */
     /* background: #0d0933; */
-  }
+    line-height: 18px;
+}
   
   .signbox input{
     padding: 10px 16px;
@@ -94,7 +95,9 @@
   }
   .signbox button:active{
     border: #5844f0 2px solid;
+    border: #0d0933 2px solid;
     color: #5844f0;
+    background-color: #0d0933;
     font-size: 15px;
   }
   

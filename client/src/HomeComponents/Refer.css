@@ -1,0 +1,114 @@
+.referBox{
+    background: #fff;
+    border-radius: 16px;
+    flex-grow: 1;
+    margin: 30px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-content: space-around;
+    /* align-items: center; */
+}
+
+.referHeading{
+    /* margin-top: 100px; */
+    font-weight: 600;
+    margin-top: 34px;
+    margin-bottom: -40px;
+}
+
+.navbar{
+}
+
+.referTxt{
+    /* margin-top: 30px; */
+    font-size: 20px;
+}
+
+.referSomeoneHeading, .getRefUrlHeading{
+    text-align: left;
+    font-size: 25px;
+    font-weight: 600;
+    width: 100%;
+    margin-bottom: 30px;
+    padding-left: 80px;
+    /* margin-left: 60px; */
+}
+
+.referSomeoneForm{
+    margin-bottom: 50px;
+}
+
+.referSomeoneFormDiv{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 30px;
+    justify-content: space-around;
+}
+
+.refNameDiv, .refEmailDiv, .refPhoneDiv{
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+    text-align: left;
+}
+.refName, .refEmail, .refPhone{
+    padding: 8px 15px;
+    border-radius: 16px;
+    border: #aaa 0.1px solid;
+    margin-left: -10px;
+    margin-top: 6px;
+}
+
+.refBtn{
+    padding: 10px 20px;
+    border: #080431 3px solid;
+    font-weight: 600;
+    color: #080431;
+    color: white;
+    background: transparent;
+    background: #080431;
+    border-radius: 16px;
+}
+
+.refBtn:hover{
+    background: #080431f5;
+    border: #080431f5 3px solid;
+}
+
+.refBtn:active{
+    font-size: 15px;
+    padding: 11.2px 21.2px;
+}
+
+.getRefUrlDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.refUrlDiv{
+    padding: 12px 30px;
+    font-size: 17px;
+    border: #aaa 2px solid;
+    border-radius: 16px;
+    width: fit-content;
+    margin-bottom: 30px;
+    letter-spacing: 1px;
+}
+
+.refUrl{
+    padding-right: 15px;
+    font-weight: 600;
+}
+
+.copyBtn{
+    padding-left: 15px;
+    height: 32px;
+    font-size: 38px;
+    border-left: #999 2px solid;
+    /* margin-left: 15px; */
+    cursor:pointer;
+
+}

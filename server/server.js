@@ -3,10 +3,12 @@ import jwt from 'jsonwebtoken'
 import cors from 'cors'
 import mongoose from 'mongoose'
 import userpass from './userPass.js'
+import referral from './referral.js'
 import dotenv from 'dotenv'
 import bcrypt from 'bcrypt'
 import 'ejs'
 import crypto from 'crypto'
+import nodemailer from 'nodemailer'
 
 
 const app = express()
@@ -22,12 +24,11 @@ dotenv.config()
 
 app.set('view engine', 'ejs')
 
-mongoose.connect('mongodb+srv://vishal:Cluster2004@cluster0.btbmdim.mongodb.net/ChatApp?retryWrites=true&w=majority', (err)=>console.log('connected'))
+mongoose.connect('mongodb+srv://vishal:Cluster2004@cluster0.btbmdim.mongodb.net/CryptoBot?retryWrites=true&w=majority', (err)=>console.log('connected'))
 mongoose.connection
 
 // Signup Login Validation + DB Registering
 app.get('/signup/checkUser', (req, res)=>{
-    console.log('checking Username');
     userpass.find({user:req.query.user}, (err, data)=>{
         console.log(data);
         if (err) throw err;
@@ -92,18 +93,23 @@ app.get('/signup/checkPass', (req, res)=>{
 
 app.post('/signup', (req, res)=>{
     console.log('signing up');
-    async function hashKar(){
+    async function hash(){
         let hashedPass = await bcrypt.hash(req.body.pswd, 10)
         console.log(hashedPass.toString());
-        userpass.create({user:req.body.user, name:req.body.name, pswd:hashedPass.toString()}, (err)=>{console.log(err);})
+        const randomBytes=crypto.randomBytes(2).toString('hex')
+        const rid=req.body.user+randomBytes.toString()
+        userpass.create({user:req.body.user, name:req.body.name, pswd:hashedPass.toString(), rid:rid}, (err)=>{console.log(err);})
+        referral.create({user:req.body.user, referralId:rid, referredUsers:[]})
         res.redirect('http://192.168.162.189:3000/')
     }
-    hashKar() 
+    hash() 
 })
+
 
 app.post('/login', (req, res)=>{
     console.log(req.body.user)
     userpass.find({user:req.body.user}, (err, data)=>{
+        console.log(data)
         if (data.length==0){
             res.render('afterLogin', {exists:false, key:'', correct:false})
             console.log('doesnt exists');
@@ -123,6 +129,40 @@ app.post('/login', (req, res)=>{
             }
             checkCorrect()
         }
+    })
+})
+
+app.post('/refer', (req, res)=>{
+    // transporter.MailMessage({
+    //     // from: 'sender@example.com',
+    //     to: 'vishalvishwajeet422@gmail.com',
+    //     subject: 'Message',
+    //     text: 'I hope this message gets delivered!'
+    // }, (err, info) => {
+    //     console.log(info.envelope);
+    //     console.log(info.messageId);
+    // })UYJH67
+
+    const transporter=nodemailer.createTransport({
+        host: 'smtp.gmail.com',
+        // port: 465,
+        // secure: true, // use SSL
+        auth: {
+            user: 'sample.email.trading.bot@gmail.com',
+            pass: 'mtwzctqjhrhgfptq'
+        }
+    })
+
+    const mailOptions={
+        from:'sample.email.trading.bot@gmail.com',
+        to:req.body.email,
+        subject:'Sending Email from NodeJS',
+        text:`Hey ${req.body.name}, You are referred by Alex Pina`
+    }
+
+    transporter.sendMail(mailOptions, (err)=>{
+        if(err) throw err;
+        console.log('Email sent')
     })
 })
 

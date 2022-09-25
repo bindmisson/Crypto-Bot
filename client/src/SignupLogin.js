@@ -2,9 +2,13 @@ import React from 'react'
 import './SignupLogin.css'
 import { useState } from 'react';
 import logo from './images/sampleLogo.png'
+import { Params, useParams } from 'react-router-dom';
 
 function SignupLogin() {
     const [signup, setsignup] = useState(false);
+
+    const params=useParams()
+    // document.alert(params.rid)
 
   function onUserChange(e) {
     if (true) {
@@ -109,7 +113,7 @@ function SignupLogin() {
         <div className="signbox">
           {signup ? (
             <div className="authBox">
-              <h1>Sign Up</h1><br />
+              <h2>Sign Up</h2><br />
               <form action="http://192.168.162.189:8080/signup" method="post" className="signupform">
                 <label htmlFor="name" id="namelbl">
                   Name
@@ -123,7 +127,7 @@ function SignupLogin() {
                   autoComplete='off'
                 />
                 <br />
-                <label htmlFor=""></label><br /><br />
+                <label htmlFor=""></label><br />
                 <label htmlFor="">Username</label>
                 <br />
                 <input
@@ -143,7 +147,6 @@ function SignupLogin() {
                   style={{ fontSize: "smaller", color: "red", padding:0 }}
                 ></label>
                 <br />
-                <br />
                 <label htmlFor="">Password</label>
                 <br />
                 <input
@@ -161,7 +164,6 @@ function SignupLogin() {
                   id="wroPass"
                   style={{ fontSize: "smaller", color: "red", padding:0 }}
                 ></label>
-                <br />
                 <br />
                 <label htmlFor="">Confirm Password</label>
                 <br />
@@ -191,14 +193,14 @@ function SignupLogin() {
             </div>
           ) : (
             <div className="authBox">
-              <h1>Login</h1><br />
+              <h2>Login</h2><br />
               <form action="http://192.168.162.189:8080/login" method="post" className="loginform">
                 <label htmlFor="">Username</label><br />
                 <input type="text" name="user" placeholder="UserID" />
-                <br /><br /><br />
+                <br /><br />
                 <label htmlFor="">Password</label><br />
                 <input type="password" name="pswd" id="pswd" className="pswd" placeholder="Enter Password" />
-                <br /><br /><br />
+                <br /><br /><br /><br />
                 <button className="btnSub">Login</button>
               </form><br />
               <span className="btmtext">Don't have an account? <span id="signupbtn" className="signuplogin" onClick={()=>{setsignup(!signup)}}> SignUp</span></span>
