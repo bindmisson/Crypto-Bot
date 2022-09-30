@@ -9,6 +9,7 @@ import bcrypt from 'bcrypt'
 import 'ejs'
 import crypto from 'crypto'
 import nodemailer from 'nodemailer'
+import child_process from 'child_process'
 
 
 const app = express()
@@ -166,6 +167,11 @@ app.post('/refer', (req, res)=>{
     })
 })
 
+const spawn = child_process.spawn
+const pythonProcess = spawn('python',["E:/OneDrive/Desktop/Mern/CryptoBot/server/trial.py", 'aaa'])
+pythonProcess.stdout.on('data', (data) => {
+    console.log(data)
+});
 
 
 app.listen(port)

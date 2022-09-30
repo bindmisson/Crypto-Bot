@@ -16,7 +16,6 @@ function Navbar() {
       navbar.style.width='140px'
       navHeading.style.visibility='hidden'
       document.getElementById('menuTxt1').style.display='none'
-      document.getElementById('logo1').style.padding='0'
       document.getElementById('menuTxt2').style.display='none'
       document.getElementById('menuTxt3').style.display='none'
       document.getElementById('menuTxt4').style.display='none'
@@ -39,11 +38,11 @@ function Navbar() {
       <HiMenu className='menuBtn' id='menuBtn' onClick={onMenuBtnClick} />
       <h2 className="navHeading" id='navHeading'>Your<span className="navHeading2">Logo</span></h2>
       <div className="navList" id='navList'>
-        <Link to='dashboard' className='referLink'><li className="navItem" id="dashboard"><MdSpaceDashboard className='navLogo' id='logo1' /><span id="menuTxt1"> Dashboard</span></li></Link>
-        <Link to='' className='referLink'><li className="navItem" id="profile"><FaUserCircle className='navLogo' id='logo2' /><span id="menuTxt2"> Authorization</span></li></Link>
-        <Link to='' className='referLink'><li className="navItem" id="invest"><FaChartLine className='navLogo' id='logo3' /><span id="menuTxt3"> License Tier</span></li></Link>
-        <Link to='' className='referLink'><li className="navItem" id="transactions"><FaDollarSign className='navLogo' id='logo4' /><span id="menuTxt4"> Transactions</span></li></Link>
-        <Link to='' className='referLink'><li className="navItem" id="faq"><FaQuestionCircle className='navLogo' id='logo5' /><span id="menuTxt5"> FAQ</span></li></Link>
+        <Link to='dashboard' className='referLink'><li className="navItem" id="dashboardItem"><MdSpaceDashboard className='navLogo' id='logo1' /><span id="menuTxt1"> Dashboard</span></li></Link>
+        <Link to='authentication' className='referLink'><li className="navItem" id="authItem"><FaUserCircle className='navLogo' id='logo2' /><span id="menuTxt2"> Authentication</span></li></Link>
+        <Link to='license' className='referLink'><li className="navItem" id="licenseItem"><FaChartLine className='navLogo' id='logo3' /><span id="menuTxt3"> License Tier</span></li></Link>
+        <Link to='transactions' className='referLink'><li className="navItem" id="transactionsItem"><FaDollarSign className='navLogo' id='logo4' /><span id="menuTxt4"> Transactions</span></li></Link>
+        <Link to='faq' className='referLink'><li className="navItem" id="faqItem"><FaQuestionCircle className='navLogo' id='logo5' /><span id="menuTxt5"> FAQ</span></li></Link>
       </div>
     </div>
   )
