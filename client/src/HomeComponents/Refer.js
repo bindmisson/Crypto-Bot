@@ -9,7 +9,7 @@ function Refer() {
         <div className="referTxt">Refer to Someone and get a Whopping 10% of their First License Tier Purchase!</div>
         <div className="referSomeone">
             <h2 className="referSomeoneHeading">Refer To Someone</h2>
-            <form action="http://192.168.43.57:8080/refer" method='post' className="referSomeoneForm">
+            <form action="http://192.168.162.189:8080/refer" method='post' className="referSomeoneForm">
                 <div className="referSomeoneFormDiv">
                 <div className="refNameDiv">
                 <label htmlFor="" className="refNameLbl">Name</label>

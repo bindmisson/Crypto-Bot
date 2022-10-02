@@ -6,6 +6,9 @@
     margin-right: 7px;
     text-align: center;
     vertical-align: middle;
+    display: flex;
+    flex-direction: column;
+    /* background: #130f40; */
 }
 
 .licenseHeader{
@@ -14,6 +17,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    /* background: #130f40; */
 }
 
 .licenseHeading{
@@ -21,6 +25,7 @@
     font-weight: 600;
     font-size: 31px;
     color: #130f40;
+    /* color: white; */
 }
 
 .current-license{
@@ -28,12 +33,14 @@
     padding: 8px 22px;
     border-radius: 16px;
     border: #aaa 0.1px solid;
+    /* color: white; */
 }
 
 .licenseHeadingLogo{
     font-size: 18px;
     margin-right: 7px;
     vertical-align: middle;
+    /* color: #fff; */
 }
 
 .licenseMiniLogo{
@@ -47,12 +54,99 @@
 	flex-direction: row;
 	justify-content: space-between;
 	padding: 25px 30px;
+    flex-grow: 1;
 }
 
 .license-card{
-    box-shadow: 0px 0px 8px -4px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 8px -2px rgba(0,0,0,0.75);
+    background: white;
+    width: 200px;
 	border-radius: 16px;
 	padding: 10px 20px;
 	text-align: center;
 	vertical-align: middle;
+    flex-grow: 1;
+    margin-left: 15px;
+    margin-right: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+    transition-duration: 200ms;
+}
+
+.license-card:hover{
+    width: 220px;
+    height: 101%;
+    box-shadow: 0px 0px 8px -1px rgba(0,0,0,0.75);
+}
+
+.licenseCardTitle{
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.price-div{
+    /* margin-top: 40px; */
+    /* margin-bottom: 40px; */
+}
+
+.original-amt{
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.save-percent{
+    margin-left: 5px;
+    padding: 8px 19px;
+    border-radius: 50px;
+    outline: 0;
+    border: #130f40 0.1px solid;
+    color: #130f40;
+    background: #130f401f;
+    font-weight: 600;
+}
+
+.final-amt{
+    font-size: 34px;
+    font-weight: 600;
+}
+
+sup{
+    font-size: 23px;
+}
+
+sub{
+    font-size: 23px;
+}
+
+.select-btn{
+    outline: 0;
+    background: transparent;
+    border-radius: 50px;
+    padding: 10px 35px;
+    width: fit-content;
+    font-weight: 600;
+    background: #130f40;
+    color: white;
+    transition-duration: 150ms;
+}
+
+.select-btn:hover{
+    padding: 10px 45px;
+}
+
+.select-btn:active{
+    font-size: 15.5px;
+}
+
+.curr{
+    font-size: 15px;
+}
+
+.min-balance{
+    font-size: 15px;
+    margin-top: -60px;
 }

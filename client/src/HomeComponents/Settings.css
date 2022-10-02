@@ -1,0 +1,63 @@
+.settings{
+    background: #fff;
+    flex-grow: 1;
+    border-radius: 16px;
+    margin: 8px;
+    margin-left: 0;
+}
+
+.bot-name{
+    color: #130f40;
+    color: #361cff;
+}
+
+.robot-icon{
+    vertical-align: middle;
+    margin-top: -4px;
+    font-size: 20px;
+}
+
+.current-license{
+    cursor: pointer;
+}
+
+.settings-inner-div{
+    /* overflow-y: auto; */
+    padding: 20px;
+}
+
+.bot-settings{
+    padding-bottom: 40px;
+    border-bottom: #ccc 0.1px solid;
+}
+
+.bot-settings-heading{
+    margin-left: 20px;
+    margin-top: 8px;
+    font-weight: 600;
+    font-size: 23px;
+}
+
+.bots-list{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.bot-item{
+    box-shadow: 0px 0px 9px -2px rgba(0,0,0,0.4);
+    border-radius: 16px;
+    /* box-shadow: 0px 0px 71px -24px rgba(0,0,0,0.75); */
+
+    /* border: #aaa 1px solid; */
+    padding: 20px 30px;
+
+}
+
+.bot-item-heading{
+    font-weight: 600;
+}
+
+.api-settings-heading{
+    margin-top: 30px;
+}

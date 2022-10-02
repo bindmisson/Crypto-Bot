@@ -8,7 +8,7 @@
     user-select: none;
 }
 
-.profileOverview, .transactions{
+.profileOverview{
     background: #fff;
     background: #130f40;
     background: #0d0933;
@@ -190,14 +190,6 @@
     font-weight: 500;
 }
 
-.transactions{
-    background: #0d0933;
-    background: #130f40;
-    background: #080431;
-    overflow-y: auto;
-    margin-bottom: 10px;
-}
-
 .upperContent{
     display: flex;
     flex-direction: row;
@@ -220,22 +212,6 @@
     padding-right: 0;
     margin-right: -4px;
     cursor: pointer;
-}
-
-.trxn-td{
-    padding: 5px 50px;
-}
-
-.transactions::-webkit-scrollbar{
-        width: 11px;
-        background: rgba(0, 0, 0, 0.452);
-        border-top-right-radius: 16px;
-        border-bottom-right-radius: 16px;
-}
-
-.transactions::-webkit-scrollbar-thumb{
-    background: #000;
-    border-radius: 16px;
 }
 
 

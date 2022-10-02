@@ -13,7 +13,7 @@ function Dashboard() {
         // Get the text field
         var refId = document.getElementById("referralId").innerHTML
         
-        // navigator.clipboard.writeText('http://192.168.43.57:3000/'+refId.toString());
+        // navigator.clipboard.writeText('http://192.168.162.189:3000/'+refId.toString());
         navigator.clipboard.writeText(refId);
         }
 
@@ -46,7 +46,7 @@ function Dashboard() {
                             </tr>
                             <tr className="table-dark">
                                 <td className="table-dark xchange-td">1</td>
-                                <td className="table-dark xchange-td">Bitcoin</td>
+                                <td className="table-dark xchange-td  coin-name"><BsCurrencyBitcoin /> Bitcoin</td>
                                 <td className="table-dark xchange-td">₹ 1700000</td>
                             </tr>
                             <tr className="table-dark">
@@ -87,7 +87,7 @@ function Dashboard() {
                     <h3 className="profileName" id="profileName">Alex Pina</h3><br />
                 </div> */}
                 <div className="faltuDiv">
-                    <span className="licenseTier">License Tier :&nbsp;&nbsp; <FaStar className='licenseLogo' /> &nbsp;Large</span><br /><br /><br />
+                    <span className="licenseTier">License Tier :&nbsp;&nbsp; <FaStar className='licenseLogo' /> &nbsp;Premium</span><br /><br /><br />
                     {/* <span className="licenseTier referral">My Referral Code :&nbsp;&nbsp;<span id="referralId">vishal-5g3h</span><TbCopy className='referralCopyBtn' onClick={onCopyClick} /> </span><br /><br /><br /> */}
                     <div className="investedTxt">Invested : <span className="investedAmt">$ 6540</span></div><br />
                     <div className="passiveIncomeTxt">Passive Income : <span className="passiveIncomeAmt">$ 1443.45</span></div><br />
@@ -113,7 +113,7 @@ function Dashboard() {
                     </tr>
                     <tr className="table-dark">
                         <td className="table-dark trxn-td">BUY</td>
-                        <td className="table-dark trxn-td">BitCoin</td>
+                        <td className="table-dark trxn-td  coin-name"><BsCurrencyBitcoin /> Bitcoin</td>
                         <td className="table-dark trxn-td">2</td>
                         <td className="table-dark trxn-td">₹40,00,000</td>
                         <td className="table-dark trxn-td">16:30</td>

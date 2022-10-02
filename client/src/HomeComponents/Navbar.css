@@ -49,6 +49,7 @@
     font-size: 19px;
     margin-bottom: 18px;
     padding: 17px 60px;
+    /* padding: 17px 17px; */
     /* color: #2d11ff; */
     color: #000;
     transition-duration: 200ms;
@@ -69,6 +70,7 @@
     margin-right: 10px;
     vertical-align: middle;
     margin-top: -5px;
+    padding: 0;
 }
 
 #logo4{

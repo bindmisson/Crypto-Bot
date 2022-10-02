@@ -4,7 +4,7 @@ import Dashboard from './Dashboard'
 import { Routes, Route } from 'react-router-dom'
 import Navbar from './Navbar'
 import Refer from './Refer'
-import Authentication from './Authentication'
+import Settings from './Settings'
 import License from './License'
 import FAQ from './FAQ'
 import Transactions from './Transactions'
@@ -17,8 +17,8 @@ function Content() {
         <Route path='dashboard' element={<Dashboard />} />
         <Route path='dashboard/refer' element={<Refer />} />
         <Route path='refer' element={<Refer />} />
-        <Route path='dashboard/authentication' element={<Authentication />} />
-        <Route path='authentication' element={<Authentication />} />
+        <Route path='dashboard/settings' element={<Settings />} />
+        <Route path='settings' element={<Settings />} />
         <Route path='dashborad/license' element={<License />} />
         <Route path='license' element={<License />} />
         <Route path='dashboard/transactions' element={<Transactions />} />

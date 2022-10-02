@@ -13,20 +13,17 @@
         const key='<%=key%>'
         if (exists.toString()=='false'){
             alert("User Don't Exist")
-            window.location.href='http://192.168.43.57:3000/'
+            window.location.href='http://192.168.162.189:3000/'
         }else{
             if (correct.toString()=='false'){
                 alert("Wrong Password")
-                window.location.href='http://192.168.43.57:3000/'
+                window.location.href='http://192.168.162.189:3000/'
             }else{
                 const datetime=new Date()
                 datetime.setTime(datetime.getTime()+21600000)
                 document.cookie=`key=${key}; expires=${datetime.toUTCString()}`
-<<<<<<< HEAD
                 window.location.href='http://192.168.162.189:3000/home'
-=======
-                window.location.href='http://192.168.43.57:3000/home'
->>>>>>> c81a1e8b4515f0ef6ed61a746c44b0130bb785d3
+                window.location.href='http://192.168.162.189:3000/home'
             }
         }
     </script>
