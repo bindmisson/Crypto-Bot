@@ -2,6 +2,8 @@ import React from 'react'
 import './Dashboard.css'
 import face from '../images/face.jpg'
 import {FaStar, FaCopy, FaUserCircle} from 'react-icons/fa'
+import {GoLinkExternal} from 'react-icons/go'
+import { BsCurrencyBitcoin } from 'react-icons/bs'
 import { Link } from 'react-router-dom'
 import {TbCopy} from 'react-icons/tb'
 import graph from '../images/graph.png'
@@ -13,7 +15,7 @@ function Dashboard() {
         // Get the text field
         var refId = document.getElementById("referralId").innerHTML
         
-        // navigator.clipboard.writeText('http://192.168.162.189:3000/'+refId.toString());
+        // navigator.clipboard.writeText('http://127.0.0.1:3000/'+refId.toString());
         navigator.clipboard.writeText(refId);
         }
 
@@ -30,6 +32,23 @@ function Dashboard() {
   return (
     <div className='dashboard'>
         <div className="upperContent">
+        <div className="faltu-box">
+            <h5 className="dashboard-heading">DASHBOARD</h5>
+        </div>
+        <div className="boxes">
+                <div className="box">
+                    <h5 className="earning-heading">Total Earnings</h5>
+                    <span className="final-amt"><>$ </>10<sup>.04</sup></span><br />
+                </div>
+                <div className="box">
+                    <h5 className="investment-heading">Total Invested Amount</h5>
+                    <span className="final-amt"><>$ </>125<sup>.00</sup></span><br />
+                </div>
+                <div className="box rightmost-box">
+                        <h6 className="rightmost-div-heading investment-heading">Since</h6>
+                        <span className="since-date final-amt">Jan 24, 2021</span>
+                </div>
+            </div>
             <div className="topNavbar" onClick={onUserIconClick}>
             <span className="profileIconName">Alex Pina</span>
             <FaUserCircle className='userIcon' />
@@ -100,13 +119,16 @@ function Dashboard() {
                         </Link>
                 </div>
             </div>
-        </div>
-            {/* <div className="transactions">
+            <div className="dashboard-transactions">
+                <div className="txn-topbar">
+                    <span className="txn-txt">Transactions</span>
+                    <span className="view-more-link"><Link to={'/transactions'} className='view-more-link'><GoLinkExternal className='gotologo' /> View More</Link></span>
+                </div>
                 <table className="table-dark" >
                     <tr className="table-dark" id='th'>
                         <th className="table-dark trxn-td">Txn Type</th>
                         <th className="table-dark trxn-td">Coin</th>
-                        <th className="table-dark trxn-td">Nos.</th>
+                        <th className="table-dark trxn-td">Quantity.</th>
                         <th className="table-dark trxn-td">Amount</th>
                         <th className="table-dark trxn-td">Time</th>
                         <th className="table-dark trxn-td">Profit/Loss</th>
@@ -160,7 +182,8 @@ function Dashboard() {
                         <td className="table-dark" style={{color:'green'}}>+2.43%</td>
                     </tr>
                 </table>
-            </div> */}
+            </div>
+        </div>
     </div>
   )
 }
