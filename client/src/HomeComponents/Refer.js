@@ -3,6 +3,13 @@ import { TbCopy } from 'react-icons/tb'
 import './Refer.css'
 
 function Refer() {
+
+
+    function onRef(){
+        window.location.href=''
+        alert('User Referred Successfully')
+    }
+
   return (
     <div className='referBox'>
         <h1 className='referHeading'>Refer & Earn</h1>
@@ -24,7 +31,7 @@ function Refer() {
                 <input type="Number" name='phone' placeholder='Phone Number of the Person' className="refPhone" id="refPhone" />
                 </div>
                 </div>
-                    <button className="refBtn">Refer</button>
+                    <button className="refBtn" onClick={onRef}>Refer</button>
             </form>
             <div className="getRefUrlDiv">
                 <h2 className="getRefUrlHeading">Get Your Referral Link</h2>

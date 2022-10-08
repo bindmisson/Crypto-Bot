@@ -45,6 +45,7 @@
     padding-top: 30px;
     padding-bottom: 45px;
     border-radius: 20px;
+    border-radius: 3px;
     background: #ac82ff;
     background: #0d0933;
     background: #fff;
@@ -59,6 +60,7 @@
   .signbox input{
     padding: 10px 16px;
     border-radius: 13px;
+    border-radius: 3px;
     outline: none;
     border: #999 0.5px solid;
     width: 280px;
@@ -74,6 +76,7 @@
     font-size: 18px;
     background: transparent;
     border-radius: 10px;
+    border-radius: 3px;
     border: #fff 3px solid;
     border: #0d0933 3px solid;
     border: #1d165c 3px solid;
@@ -113,5 +116,9 @@
   .signuplogin{
     cursor: pointer;
     color: #0d0933;
+    font-weight: 600;
+  }
+
+  .authBox h2{
     font-weight: 600;
   }

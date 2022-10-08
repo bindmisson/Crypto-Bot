@@ -1,11 +1,12 @@
 import React from 'react'
 import './Dashboard.css'
 import face from '../images/face.jpg'
-import {FaStar, FaCopy, FaUserCircle} from 'react-icons/fa'
-import {GoLinkExternal} from 'react-icons/go'
+import { FaStar, FaCopy, FaUserCircle } from 'react-icons/fa'
+import { GoLinkExternal} from 'react-icons/go'
 import { BsCurrencyBitcoin } from 'react-icons/bs'
+import { SiEthereum } from 'react-icons/si'
 import { Link } from 'react-router-dom'
-import {TbCopy} from 'react-icons/tb'
+import { TbCopy } from 'react-icons/tb'
 import graph from '../images/graph.png'
 
 function Dashboard() {
@@ -143,7 +144,7 @@ function Dashboard() {
                     </tr>
                     <tr className="table-dark">
                         <td className="table-dark trxn-td">SELL</td>
-                        <td className="table-dark trxn-td">Ethereum</td>
+                        <td className="table-dark trxn-td"><SiEthereum /> Ethereum</td>
                         <td className="table-dark trxn-td">1.4</td>
                         <td className="table-dark trxn-td">₹23,00,000</td>
                         <td className="table-dark trxn-td">16:36</td>
@@ -189,3 +190,6 @@ function Dashboard() {
 }
 
 export default Dashboard
+
+// Admin panel
+// Stop btn
