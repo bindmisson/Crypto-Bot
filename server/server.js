@@ -19,7 +19,7 @@ const port=process.env.PORT || 8080
 app.use(express.urlencoded({extended:false}))
 app.use(express.json())
 app.use(cors({
-    origin:'http://127.0.0.1:3000'
+    origin:'http://192.168.50.189:3000'
 }))
 dotenv.config()
 
@@ -101,7 +101,7 @@ app.post('/signup', (req, res)=>{
         const rid=req.body.user+randomBytes.toString()
         userpass.create({user:req.body.user, name:req.body.name, pswd:hashedPass.toString(), rid:rid}, (err)=>{console.log(err);})
         referral.create({user:req.body.user, referralId:rid, referredUsers:[]})
-        res.redirect('http://127.0.0.1:3000/')
+        res.redirect('http://192.168.50.189:3000/')
     }
     hash() 
 })
@@ -169,6 +169,10 @@ app.post('/refer', (req, res)=>{
         if(err) throw err;
         console.log('Email sent')
     })
+})
+
+app.get('/adminLogin', (req, res)=>{
+    res.sendFile('E:/OneDrive/Desktop/Mern/CryptoBot/server/abcd.html')
 })
 
 const spawn = child_process.spawn

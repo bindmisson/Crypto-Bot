@@ -16,7 +16,7 @@ function Dashboard() {
         // Get the text field
         var refId = document.getElementById("referralId").innerHTML
         
-        // navigator.clipboard.writeText('http://127.0.0.1:3000/'+refId.toString());
+        // navigator.clipboard.writeText('http://192.168.50.189:3000/'+refId.toString());
         navigator.clipboard.writeText(refId);
         }
 

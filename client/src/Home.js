@@ -7,9 +7,9 @@ import Navbar from './HomeComponents/Navbar'
 function Home() {
 
   if (document.cookie.charAt(0)!='k'){
-    window.location.href='http://127.0.0.1:3000/'
+    window.location.href='http://192.168.50.189:3000/'
   if (document.cookie.charAt(0).toString()!='k'){
-    document.location.href='http://127.0.0.1:3000'
+    document.location.href='http://192.168.50.189:3000'
   }
 }
 
