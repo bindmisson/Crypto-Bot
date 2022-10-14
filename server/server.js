@@ -4,12 +4,16 @@ import cors from 'cors'
 import mongoose from 'mongoose'
 import userpass from './userPass.js'
 import referral from './referral.js'
+import userdetails from './userdetails.js'
 import dotenv from 'dotenv'
 import bcrypt from 'bcrypt'
 import 'ejs'
 import crypto from 'crypto'
 import nodemailer from 'nodemailer'
 import child_process from 'child_process'
+import cookieParser from "cookie-parser";
+import referred from './referred.js'
+import chats from './chats.js'
 
 
 const app = express()
@@ -19,14 +23,15 @@ const port=process.env.PORT || 8080
 app.use(express.urlencoded({extended:false}))
 app.use(express.json())
 app.use(cors({
-    origin:'http://192.168.50.189:3000'
+    origin:'http://192.168.211.189:3001'
 }))
+app.use(cookieParser())
 dotenv.config()
 
 app.set('view engine', 'ejs')
 
 mongoose.connect('mongodb+srv://vishal:Cluster2004@cluster0.btbmdim.mongodb.net/CryptoBot?retryWrites=true&w=majority', (err)=>console.log('connected'))
-mongoose.connection
+const db=mongoose.connection
 
 // Signup Login Validation + DB Registering
 app.get('/signup/checkUser', (req, res)=>{
@@ -101,7 +106,13 @@ app.post('/signup', (req, res)=>{
         const rid=req.body.user+randomBytes.toString()
         userpass.create({user:req.body.user, name:req.body.name, pswd:hashedPass.toString(), rid:rid}, (err)=>{console.log(err);})
         referral.create({user:req.body.user, referralId:rid, referredUsers:[]})
-        res.redirect('http://192.168.50.189:3000/')
+        userdetails.create({name:req.body.name, username:req.body.user, totalInvestment:0, totalEarned:0, earnedPercentage:0, totalReferrals:0, license:'', bot:''})
+        res.redirect('http://192.168.211.189:3001/')
+        userpass.find({rid:req.body.rid}, (err, data)=>{
+            const user=data[0].user
+            referred.create({referredBy:user, referred:req.body.user})
+        })
+        chats.create({user:req.body.user, chat:[]})
     }
     hash() 
 })
@@ -169,11 +180,103 @@ app.post('/refer', (req, res)=>{
         if(err) throw err;
         console.log('Email sent')
     })
+
+    // referral.find({user:})
+    const user=jwt.verify(req.cookies['key'], process.env.SECRET_TOKEN).user
+    referral.find({user:user}, (err, data)=>{
+        const rid=data[0]['referralId']
+        oldArr=data[0]['referredUsers']
+        let newArr=oldArr
+        newArr.push(req.body.email)
+        referral.find({user:user}).remove().exec()
+        referral.create({user:user, referralId:rid, referredUsers:newArr})
+    })
+})
+
+app.get('/getReferralId', (req, res)=>{
+    const jwtKey=req.query.key.toString().slice(4)
+    const user=jwt.verify(jwtKey, process.env.SECRET_TOKEN).user
+    userpass.find({user:user}, (err, data)=>{
+        if (err) throw err;
+        res.json(data[0].rid)
+    })
 })
 
 app.get('/adminLogin', (req, res)=>{
     res.sendFile('E:/OneDrive/Desktop/Mern/CryptoBot/server/abcd.html')
 })
+
+// ADMIN PANEL FROM HERE !!!!!
+// ADMIN PANEL FROM HERE !!!!!
+// ADMIN PANEL FROM HERE !!!!!
+
+app.get('/admin-get-users', (req, res)=>{
+    userdetails.find({}, (err, data)=>{
+        if (err) throw err;
+        res.json(data)
+    })
+})
+
+app.get('/removeAccount', (req, res)=>{
+    const user=req.query.user
+    console.log(user)
+    userpass.find({user:user}).remove().exec()
+    userdetails.find({username:user}).remove().exec()
+    referral.find({user:user}).remove().exec()
+    res.end()
+})
+
+app.get('/sendQuery', (req, res)=>{
+    console.log('sending query')
+    const jwtKey=req.query.key.toString().slice(4)
+    const user=jwt.verify(jwtKey, process.env.SECRET_TOKEN).user
+    console.log('user=>', user)
+    let newChats=[]
+    chats.find({user:user}, (err, data)=>{
+        if (err) throw err;
+        console.log('data=>', data)
+        const oldChats=data[0].chat
+        console.log('oldchats=>', oldChats)
+        const newMsg={'user':req.query.msg}
+        let newMsgs=oldChats
+        newMsgs.push(newMsg)
+        newChats=newMsgs
+        console.log('newchats=>', newMsg)
+        console.log('newchats=>', newMsgs)
+        chats.find({user:user}).remove().exec()
+        chats.create({user:user, chat:newChats})
+    })
+})
+
+app.get('/sendQueryReply', (req, res)=>{
+chats.find({user:req.query.user}, (err, data)=>{
+    if(err) throw err;
+    const oldChats=data[0].chat
+    const newMsg={'admin':req.query.msg}
+    oldChats.push(newMsg)
+    chats.findOneAndUpdate({user:user}, {chat:oldChats})
+})
+})
+
+app.get('/getChats', (req, res)=>{
+    const jwtKey=req.query.key.toString()
+    const user=jwt.verify(jwtKey, process.env.SECRET_TOKEN).user
+    chats.find({user:user}, (err, data)=>{
+        if(err) throw err;
+        console.log(data[0].chat)
+        res.json(data[0].chat)
+    })
+})
+
+app.get('/getName', (req, res)=>{
+    const jwtKey=req.query.key.toString()
+    const user=jwt.verify(jwtKey, process.env.SECRET_TOKEN).user
+    userdetails.find({username:user}, (err, data)=>{
+        if(err) throw err;
+        res.json(data[0].name)
+    })
+})
+
 
 const spawn = child_process.spawn
 const pythonProcess = spawn('python',["E:/OneDrive/Desktop/Mern/CryptoBot/server/trial.py", 'aaa'])
@@ -181,5 +284,9 @@ pythonProcess.stdout.on('data', (data) => {
     console.log(data)
 });
 
-
 app.listen(port)
+
+// another route for each users details elaborated, transactions with desc
+// queries
+// edit faq section
+// referrals also

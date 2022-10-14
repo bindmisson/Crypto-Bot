@@ -9,6 +9,8 @@ import { Link } from 'react-router-dom'
 
 function Navbar() {
 
+  
+
   function onMenuBtnClick(){
     const navbar=document.getElementById('navbar')
     const navHeading=document.getElementById('navHeading')

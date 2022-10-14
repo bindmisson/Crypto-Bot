@@ -101,6 +101,7 @@
 .refUrl{
     padding-right: 15px;
     font-weight: 600;
+    user-select: text;
 }
 
 .copyBtn{

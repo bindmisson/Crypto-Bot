@@ -1,9 +1,20 @@
 import React from 'react'
+import { useState } from 'react'
 import { TbCopy } from 'react-icons/tb'
 import './Refer.css'
 
 function Refer() {
 
+    const [rid, setrid] = useState('')
+    const [ridLoaded, setridLoaded] = useState(false)
+
+    async function loadRid(){
+        const response=await fetch(`http://192.168.211.189:8080/getReferralId?key=${document.cookie}`)
+        const data=await response.json()
+        setridLoaded(true)
+        setrid(data)
+    }
+    loadRid()
 
     function onRef(){
         window.location.href=''
@@ -16,7 +27,7 @@ function Refer() {
         <div className="referTxt">Refer to Someone and get a Whopping 10% of their First License Tier Purchase!</div>
         <div className="referSomeone">
             <h2 className="referSomeoneHeading">Refer To Someone</h2>
-            <form action="http://192.168.50.189:8080/refer" method='post' className="referSomeoneForm">
+            <form action="http://192.168.211.189:8080/refer" method='post' className="referSomeoneForm">
                 <div className="referSomeoneFormDiv">
                 <div className="refNameDiv">
                 <label htmlFor="" className="refNameLbl">Name</label>
@@ -36,7 +47,7 @@ function Refer() {
             <div className="getRefUrlDiv">
                 <h2 className="getRefUrlHeading">Get Your Referral Link</h2>
                 <div className="refUrlDiv">
-                    <span className="refUrl">http://abcd.com/login/vishal-ref</span>
+                    <span className="refUrl">http://192.168.211.189:3001/refer/{ridLoaded ? rid : ''}</span>
                     <TbCopy className='copyBtn' />
                 </div>
             </div>

@@ -1,5 +1,6 @@
 import React from 'react'
 import './Dashboard.css'
+import { useState } from 'react'
 import face from '../images/face.jpg'
 import { FaStar, FaCopy, FaUserCircle } from 'react-icons/fa'
 import { GoLinkExternal} from 'react-icons/go'
@@ -12,11 +13,22 @@ import graph from '../images/graph.png'
 function Dashboard() {
 
 
+    const [name, setname] = useState('')
+  const [nameLoaded, setnameLoaded] = useState(false)
+
+  async function loadName(){
+    const response=await fetch(`http://192.168.211.189:8080/getName?key=${document.cookie.slice(4)}`)
+    const data=await response.json()
+    setname(data)
+    setnameLoaded(true)
+  }
+  loadName()
+
     function onCopyClick() {
         // Get the text field
         var refId = document.getElementById("referralId").innerHTML
         
-        // navigator.clipboard.writeText('http://192.168.50.189:3000/'+refId.toString());
+        // navigator.clipboard.writeText('http://192.168.211.189:3001/'+refId.toString());
         navigator.clipboard.writeText(refId);
         }
 
@@ -51,7 +63,7 @@ function Dashboard() {
                 </div>
             </div>
             <div className="topNavbar" onClick={onUserIconClick}>
-            <span className="profileIconName">Alex Pina</span>
+            <span className="profileIconName">{nameLoaded ? name:''}</span>
             <FaUserCircle className='userIcon' />
             </div>
             {/* <div className="middleContent">
