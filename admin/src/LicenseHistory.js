@@ -2,7 +2,9 @@ import React from 'react'
 
 function LicenseHistory() {
   return (
-    <div>LicenseHistory</div>
+    <div>
+        
+    </div>
   )
 }
 

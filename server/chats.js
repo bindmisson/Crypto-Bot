@@ -5,4 +5,4 @@ const chatsSchema=new mongoose.Schema({
     chat:Array
 })
 
-export default mongoose.model('chats', chatsSchema)
+export default mongoose.model('chats2', chatsSchema)

@@ -17,7 +17,7 @@ function Dashboard() {
   const [nameLoaded, setnameLoaded] = useState(false)
 
   async function loadName(){
-    const response=await fetch(`http://192.168.211.189:8080/getName?key=${document.cookie.slice(4)}`)
+    const response=await fetch(`http://192.168.43.189:8080/getName?key=${document.cookie.slice(4)}`)
     const data=await response.json()
     setname(data)
     setnameLoaded(true)
@@ -28,7 +28,7 @@ function Dashboard() {
         // Get the text field
         var refId = document.getElementById("referralId").innerHTML
         
-        // navigator.clipboard.writeText('http://192.168.211.189:3001/'+refId.toString());
+        // navigator.clipboard.writeText('http://192.168.43.189:3001/'+refId.toString());
         navigator.clipboard.writeText(refId);
         }
 
@@ -135,7 +135,7 @@ function Dashboard() {
             <div className="dashboard-transactions">
                 <div className="txn-topbar">
                     <span className="txn-txt">Transactions</span>
-                    <span className="view-more-link"><Link to={'/transactions'} className='view-more-link'><GoLinkExternal className='gotologo' /> View More</Link></span>
+                    <span className="view-more-link"><Link to={'/home/transactions'} className='view-more-link'><GoLinkExternal className='gotologo' /> View More</Link></span>
                 </div>
                 <table className="table-dark" >
                     <tr className="table-dark" id='th'>

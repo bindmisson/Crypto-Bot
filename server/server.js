@@ -23,7 +23,7 @@ const port=process.env.PORT || 8080
 app.use(express.urlencoded({extended:false}))
 app.use(express.json())
 app.use(cors({
-    origin:'http://192.168.211.189:3001'
+    origin:'http://192.168.43.189:3000'
 }))
 app.use(cookieParser())
 dotenv.config()
@@ -43,13 +43,13 @@ app.get('/signup/checkUser', (req, res)=>{
         }else{
             res.json('0')
         }
-    })    
+    })
 })
 
 app.get('/signup/checkPass', (req, res)=>{
     const nums=[1,2,3,4,5,6,7,8,9,0]
     const alphas='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    console.log('checking pass');
+    console.log('checking pass')
     const pass=req.query.pass
     
     let haveNum=false
@@ -107,14 +107,17 @@ app.post('/signup', (req, res)=>{
         userpass.create({user:req.body.user, name:req.body.name, pswd:hashedPass.toString(), rid:rid}, (err)=>{console.log(err);})
         referral.create({user:req.body.user, referralId:rid, referredUsers:[]})
         userdetails.create({name:req.body.name, username:req.body.user, totalInvestment:0, totalEarned:0, earnedPercentage:0, totalReferrals:0, license:'', bot:''})
-        res.redirect('http://192.168.211.189:3001/')
-        userpass.find({rid:req.body.rid}, (err, data)=>{
-            const user=data[0].user
-            referred.create({referredBy:user, referred:req.body.user})
-        })
-        chats.create({user:req.body.user, chat:[]})
+        res.redirect('http://192.168.43.189:3001/')
+        if (req.body.rid!=''){
+            userpass.find({rid:req.body.rid}, (err, data)=>{
+                console.log('data=>', data)
+                const user=data[0].user
+                referred.create({referredBy:user, referred:req.body.user})
+            })
+        }
     }
-    hash() 
+    hash()
+    chats.create({user:req.body.user, chat:[]})
 })
 
 
@@ -182,10 +185,11 @@ app.post('/refer', (req, res)=>{
     })
 
     // referral.find({user:})
+    console.log('cookies==>', req.cookies)
     const user=jwt.verify(req.cookies['key'], process.env.SECRET_TOKEN).user
     referral.find({user:user}, (err, data)=>{
         const rid=data[0]['referralId']
-        oldArr=data[0]['referredUsers']
+        const oldArr=data[0]['referredUsers']
         let newArr=oldArr
         newArr.push(req.body.email)
         referral.find({user:user}).remove().exec()
@@ -211,6 +215,7 @@ app.get('/adminLogin', (req, res)=>{
 // ADMIN PANEL FROM HERE !!!!!
 
 app.get('/admin-get-users', (req, res)=>{
+    console.log('getting users');
     userdetails.find({}, (err, data)=>{
         if (err) throw err;
         res.json(data)
@@ -235,16 +240,25 @@ app.get('/sendQuery', (req, res)=>{
     chats.find({user:user}, (err, data)=>{
         if (err) throw err;
         console.log('data=>', data)
-        const oldChats=data[0].chat
-        console.log('oldchats=>', oldChats)
         const newMsg={'user':req.query.msg}
-        let newMsgs=oldChats
-        newMsgs.push(newMsg)
-        newChats=newMsgs
-        console.log('newchats=>', newMsg)
-        console.log('newchats=>', newMsgs)
-        chats.find({user:user}).remove().exec()
-        chats.create({user:user, chat:newChats})
+        if (data                                     
+            
+            
+            .length==0){
+            chats.create({user:user, chat:newMsg})
+            console.log('New Chat Created')
+        }else{
+            const oldChats=data[0].chat
+            console.log('oldchats=>', oldChats)
+            console.log('Chat Updated')
+            let newMsgs=oldChats
+            newMsgs.push(newMsg)
+            newChats=newMsgs
+            console.log('newchats=>', newMsg)
+            console.log('newchats=>', newMsgs)
+            chats.find({user:user}).remove().exec()
+            chats.create({user:user, chat:newChats})
+        }
     })
 })
 
@@ -263,8 +277,10 @@ app.get('/getChats', (req, res)=>{
     const user=jwt.verify(jwtKey, process.env.SECRET_TOKEN).user
     chats.find({user:user}, (err, data)=>{
         if(err) throw err;
-        console.log(data[0].chat)
-        res.json(data[0].chat)
+        // console.log(data[0].chat)
+        if (data.length!=0){
+            res.json(data[0].chat)
+        }
     })
 })
 
@@ -277,12 +293,50 @@ app.get('/getName', (req, res)=>{
     })
 })
 
+app.get('/getQueries', (req,res)=>{
+    let queries=[]
+    chats.find({}, (err, data)=>{
+        if (err) throw err;
+        console.log('data==>', data)
+        for (let i of data){
+            console.log(i)
+            if (i.chat.length!=0){
+                if (Object.keys(i.chat[i.chat.length-1])[0]=='user'){
+                    queries.push(i.chat[i.chat.length-1][Object.keys(i.chat[i.chat.length-1])])
+                }
+            }
+        }
+        console.log(queries)
+        res.json(queries)
+    })
+})
+
+app.get('/get-referrals', (req, res)=>{
+    referral.find({}, (err, data)=>{
+        let referrals=[]
+        if(err) throw err;
+        for (let i of data){
+            if (i.referredUsers.length!=0){
+                for (let i2 of i.referredUsers){
+                    let a={}
+                    a['by']=i.user
+                    a['to']=i2
+                    referrals.push(a)
+                }
+            }
+        }
+        res.json(referrals)
+    })
+})
+
 
 const spawn = child_process.spawn
 const pythonProcess = spawn('python',["E:/OneDrive/Desktop/Mern/CryptoBot/server/trial.py", 'aaa'])
 pythonProcess.stdout.on('data', (data) => {
     console.log(data)
 });
+
+chats.create({user:'abcd', chat:[]})
 
 app.listen(port)
 

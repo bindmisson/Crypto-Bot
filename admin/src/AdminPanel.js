@@ -16,7 +16,7 @@ function AdminPanel() {
         <Link to='/' className="admin-nav-item">Users</Link>|
         <Link to='referrals' className="admin-nav-item">Referrals</Link>|
         <Link to='license-history' className="admin-nav-item">License Purchasing History</Link>|
-        <Link to='queries' className="admin-nav-item">Queries</Link>|
+        <a href='#' className="admin-nav-item">Queries</a>|
         <Link to='/settings' className="admin-nav-item">Binance Settings</Link>
       </div>
       <Routes>
