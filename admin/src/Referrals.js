@@ -7,7 +7,7 @@ function Referrals() {
     const [referralsLoaded, setreferralsLoaded] = useState(false)
 
     async function getReferrals(){
-        const response=await fetch('http://192.168.43.189:8080/get-referrals')
+        const response=await fetch('http://localhost:8080/get-referrals')
         const data= await response.json()
         console.log(data)
         setreferrals(JSON.stringify(data))

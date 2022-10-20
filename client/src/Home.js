@@ -11,9 +11,9 @@ import { RiQuestionnaireFill } from 'react-icons/ri'
 function Home() {
 
   if (document.cookie.charAt(0)!='k'){
-    window.location.href='http://192.168.43.189:3001/'
+    window.location.href='http://localhost:3000/'
   if (document.cookie.charAt(0).toString()!='k'){
-    document.location.href='http://192.168.43.189:3001'
+    document.location.href='http://localhost:3000'
   }
 }
 

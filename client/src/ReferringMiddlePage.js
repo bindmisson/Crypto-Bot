@@ -6,7 +6,7 @@ function ReferringMiddlePage(props) {
     const params=useParams()
     const rid=params.rid
     localStorage.setItem('rid', rid)
-    document.location.href='http://192.168.43.189:3001/'
+    document.location.href='http://localhost:3000/'
 
   return (
     <div>

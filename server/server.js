@@ -14,6 +14,12 @@ import child_process from 'child_process'
 import cookieParser from "cookie-parser";
 import referred from './referred.js'
 import chats from './chats.js'
+import config from './Binance/config.json' assert{type: "json"}
+import { assert } from 'console'
+import { type } from 'os'
+import fs from 'fs'
+import {spawn} from 'child_process'
+import {PythonShell} from 'python-shell'
 
 
 const app = express()
@@ -23,7 +29,7 @@ const port=process.env.PORT || 8080
 app.use(express.urlencoded({extended:false}))
 app.use(express.json())
 app.use(cors({
-    origin:'http://192.168.43.189:3000'
+    origin:'http://localhost:3000'
 }))
 app.use(cookieParser())
 dotenv.config()
@@ -107,7 +113,7 @@ app.post('/signup', (req, res)=>{
         userpass.create({user:req.body.user, name:req.body.name, pswd:hashedPass.toString(), rid:rid}, (err)=>{console.log(err);})
         referral.create({user:req.body.user, referralId:rid, referredUsers:[]})
         userdetails.create({name:req.body.name, username:req.body.user, totalInvestment:0, totalEarned:0, earnedPercentage:0, totalReferrals:0, license:'', bot:''})
-        res.redirect('http://192.168.43.189:3001/')
+        res.redirect('http://localhost:3000/')
         if (req.body.rid!=''){
             userpass.find({rid:req.body.rid}, (err, data)=>{
                 console.log('data=>', data)
@@ -204,6 +210,39 @@ app.get('/getReferralId', (req, res)=>{
         if (err) throw err;
         res.json(data[0].rid)
     })
+})
+
+app.get('/get-bot', (req, res)=>{
+    const jwtKey=req.query.key.toString()
+    const user=jwt.verify(jwtKey, process.env.SECRET_TOKEN).user
+    userdetails.find({username:user}, (err, data)=>{
+
+        if(err) throw err;
+        res.json(data[0].bot)
+    })
+})
+
+app.get('/set-bot', (req, res)=>{
+    console.log('setting bot', req.query.bot)
+    const jwtKey=req.query.key.toString()
+    const user=jwt.verify(jwtKey, process.env.SECRET_TOKEN).user
+    const bot=req.query.bot
+    let oldDetails={}
+    try {
+        userdetails.find({username:user}, (err, data)=>{
+            console.log(data);
+            oldDetails=data[0]
+            oldDetails['bot']=req.query.bot
+            console.log(oldDetails);
+            userdetails.create(oldDetails)
+            res.json('1')
+        })
+    } catch (error) {
+        res.json('0')
+    }
+
+    // userdetails.findOneAndUpdate({username:user}, {bot:bot})
+    // res.end()
 })
 
 app.get('/adminLogin', (req, res)=>{
@@ -329,14 +368,52 @@ app.get('/get-referrals', (req, res)=>{
     })
 })
 
+app.get('/get-api-settings', (req, res)=>{
+    // console.log(config);
+    res.json(config)
+})
 
-const spawn = child_process.spawn
-const pythonProcess = spawn('python',["E:/OneDrive/Desktop/Mern/CryptoBot/server/trial.py", 'aaa'])
-pythonProcess.stdout.on('data', (data) => {
-    console.log(data)
-});
+app.post('/set-api-settings', (req, res)=>{
+    console.log(req.body);
+    fs.writeFileSync('./Binance/config.json', JSON.stringify(req.body))
+    res.json('1')
+})
 
-chats.create({user:'abcd', chat:[]})
+app.get('/start-bot', (req, res)=>{
+    // try {
+    //     const pyScript=spawn('python', ['E:/OneDrive/Desktop/Mern/CryptoBot/server/Binance/config.json'])
+    //     pyScript.stdout.on('data', (data)=>{
+    //         console.log('piping data');
+    //         console.log('data=>', data.toString());
+    //     })
+    // } catch (error) {
+    //     console.log(error);
+    // }
+
+    let options = {
+        mode: 'text',
+        pythonOptions: ['-u'], // get print results in real-time
+        // scriptPath: './', //If you are having python_test.py script in same folder, then it's optional.
+        // args: ['shubhamk314'] //An argument which can be accessed in the script using sys.argv[1]
+    };
+     
+ 
+    PythonShell.run('trial.py', options, function (err, result){
+          if (err) throw err;
+          // result is an array consisting of messages collected
+          //during execution of script.
+          console.log('result: ', result.toString());
+          res.send(result.toString())
+    });
+})
+
+// const spawn = child_process.spawn
+// const pythonProcess = spawn('python',["E:/OneDrive/Desktop/Mern/CryptoBot/server/trial.py", 'aaa'])
+// pythonProcess.stdout.on('data', (data) => {
+//     console.log(data)
+// });
+
+// chats.create({user:'abcd', chat:[]})
 
 app.listen(port)
 
@@ -344,3 +421,6 @@ app.listen(port)
 // queries
 // edit faq section
 // referrals also
+
+
+// i\ there is a cookie with key, it opens the dashboard, so first chck if user and userdetails exist or not, else redirect to login

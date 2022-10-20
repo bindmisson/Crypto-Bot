@@ -1,0 +1,16 @@
+{
+  "apiKey": "wJ126ZR8OyY6LNjTdZcUgrBed8iF3LkkgvRcQBZYdAH6y3uXNjlMdgLe9qMpC3qY",
+  "secretKey": "0Kmvh8KlJp7TrT5KQivSvUBelDtkYXruul2CQXkRKfWKHmizDkE442wgIy1dWUOB",
+  "asset": "BTC",
+  "leverage": "125",
+  "marginMode": "CROSS",
+  "baseOrderSize": "2",
+  "maxTradeCount": "1",
+  "rsiLength": "14",
+  "rsiUpper": "70",
+  "rsiLower": "30",
+  "safetyOrderStep": "2",
+  "takeProfit": "0.8",
+  "timeFrame": "1m",
+  "safetyOrderVolumeScale": "1"
+}

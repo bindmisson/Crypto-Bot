@@ -7,7 +7,7 @@ import { Params, useParams } from 'react-router-dom';
 function SignupLogin() {
 
   if (document.cookie.charAt(0).toString()=='k'){
-    document.location.href='http://192.168.43.189:3001/home'
+    document.location.href='http://localhost:3000/home'
   }
 
     const [signup, setsignup] = useState(false);
@@ -25,7 +25,7 @@ function SignupLogin() {
       async function checkUser() {
         console.log("trying2");
         const response = await fetch(
-          `http://192.168.43.189:8080/signup/checkUser?user=${e.target.value}`,
+          `http://localhost:8080/signup/checkUser?user=${e.target.value}`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -62,7 +62,7 @@ function SignupLogin() {
       const btn = document.getElementById("btnsub");
       async function checkPass() {
         const response = await fetch(
-          `http://192.168.43.189:8080/signup/checkPass?pass=${pass}`,
+          `http://localhost:8080/signup/checkPass?pass=${pass}`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -119,7 +119,7 @@ function SignupLogin() {
           {signup ? (
             <div className="authBox">
               <h2>Sign Up</h2><br />
-              <form action="http://192.168.43.189:8080/signup" method="post" className="signupform">
+              <form action="http://localhost:8080/signup" method="post" className="signupform">
                 <label htmlFor="name" id="namelbl">
                   Name
                 </label><br />
@@ -200,7 +200,7 @@ function SignupLogin() {
           ) : (
             <div className="authBox">
               <h2>Login</h2><br />
-              <form action="http://192.168.43.189:8080/login" method="post" className="loginform">
+              <form action="http://localhost:8080/login" method="post" className="loginform">
                 <label htmlFor="">Username</label><br />
                 <input type="text" name="user" placeholder="UserID" />
                 <br /><br />

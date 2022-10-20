@@ -11,7 +11,7 @@ function FAQ() {
 
 // async function getChats(){
 //   console.log('Getting Chats')
-//   const response = await fetch(`http://192.168.43.189:8080/getChats?key=${document.cookie.slice(4)}`)
+//   const response = await fetch(`http://localhost:8080/getChats?key=${document.cookie.slice(4)}`)
 //   const data = await response.json()
 //   setchat(JSON.stringify(data))
 //   setchatLoaded(true)
@@ -30,7 +30,7 @@ function FAQ() {
 
 // async function onQuerySend(){
 //   const msg=document.getElementById('query-input').value
-//   await fetch(`http://192.168.43.189:8080/sendQuery?key=${document.cookie}&msg=${msg}`)
+//   await fetch(`http://localhost:8080/sendQuery?key=${document.cookie}&msg=${msg}`)
 //   setreload(true)
 //   msg=''
 // }

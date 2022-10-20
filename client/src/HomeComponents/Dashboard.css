@@ -365,3 +365,39 @@
     margin-top: -3px;
     margin-right: 5px;
 }
+
+.start-btn, .stop-btn{
+    padding: 30px 20px;
+    border: #080431 3px solid;
+    outline: none;
+    background: #130f40;
+    color: white;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.start-btn:disabled, .stop-btn:disabled{
+    opacity: 0.8;
+}
+
+.start-btn:disabled:hover, .stop-btn:disabled:hover{
+    cursor: not-allowed;
+    background: #130f40;
+}
+
+.start-btn:hover, .stop-btn:hover{
+    background: #0d0933;
+}
+
+.start-btn:active, .stop-btn:active{
+    background: #080431;
+}
+
+.start-btn{
+    margin-top: 10px;
+}
+
+.stop-btn{
+    margin-bottom: 10px;
+}

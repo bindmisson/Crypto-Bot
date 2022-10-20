@@ -17,7 +17,7 @@ function Dashboard() {
   const [nameLoaded, setnameLoaded] = useState(false)
 
   async function loadName(){
-    const response=await fetch(`http://192.168.43.189:8080/getName?key=${document.cookie.slice(4)}`)
+    const response=await fetch(`http://localhost:8080/getName?key=${document.cookie.slice(4)}`)
     const data=await response.json()
     setname(data)
     setnameLoaded(true)
@@ -28,7 +28,7 @@ function Dashboard() {
         // Get the text field
         var refId = document.getElementById("referralId").innerHTML
         
-        // navigator.clipboard.writeText('http://192.168.43.189:3001/'+refId.toString());
+        // navigator.clipboard.writeText('http://localhost:3000/'+refId.toString());
         navigator.clipboard.writeText(refId);
         }
 
@@ -39,6 +39,30 @@ function Dashboard() {
             profileBox.style.visibility='hidden'
         }else{
             profileBox.style.visibility='visible'
+        }
+    }
+
+    async function onStartClicked(){
+        const response = await fetch('http://192.168.0.5:8080/start-bot')
+        const data=await response.json()
+        if (data=='1'){
+            alert('Bot Started Successfully')
+            document.getElementById('stop-btn').disabled=false
+            document.getElementById('start-btn').disabled=true
+        }else{
+            alert('Some Error Occured')
+        }
+    }
+
+    async function onStopClicked(){
+        const response = await fetch('http://192.168.0.5:8080/stop-bot')
+        const data=await response.json()
+        if (data=='1'){
+            alert('Bot Started Successfully')
+            document.getElementById('start-btn').disabled=false
+            document.getElementById('stop-btn').disabled=true
+        }else{
+            alert('Some Error Occured')
         }
     }
 
@@ -60,6 +84,12 @@ function Dashboard() {
                 <div className="box rightmost-box">
                         <h6 className="rightmost-div-heading investment-heading">Since</h6>
                         <span className="since-date final-amt">Jan 24, 2021</span>
+                </div>
+                <div className="box rightmost-box">
+                        {/* <h6 className="rightmost-div-heading investment-heading"></h6> */}
+                        {/* <span className="since-date final-amt"></span> */}
+                        <button className="start-btn" id='start-btn' onClick={onStartClicked}>START</button>
+                        <button className="stop-btn" id='stop-btn' onClick={onStopClicked}>STOP</button>
                 </div>
             </div>
             <div className="topNavbar" onClick={onUserIconClick}>
