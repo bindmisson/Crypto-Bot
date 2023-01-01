@@ -9,7 +9,7 @@ function Settings() {
   const [bot, setbot] = useState('')
 
   async function getBot(){
-    const response= await fetch(`http://192.168.0.5:8080/get-bot?key=${document.cookie.slice(4)}`)
+    const response= await fetch(`http://localhost:8080/get-bot?key=${document.cookie.slice(4)}`)
     const data=await response.json()
     setbotLoaded(true)
     setbot(data)
@@ -21,7 +21,7 @@ function Settings() {
 
   async function setBotAtServer(){
     if (botSelected!=''){
-      const response = await fetch(`http://192.168.0.5:8080/set-bot?key=${document.cookie.slice(4)}&bot=${botSelected}`)
+      const response = await fetch(`http://localhost:8080/set-bot?key=${document.cookie.slice(4)}&bot=${botSelected}`)
       const data = await response.json()
       if (data=='1'){
         alert('Bot Updated Successfully')
@@ -83,7 +83,7 @@ function Settings() {
       }
     }
 
-    await fetch('http://192.168.0.5:8080/set-api-settings', {
+    await fetch('http://localhost:8080/set-api-settings', {
       method: 'POST',
       headers:{'Content-Type': 'application/json'},
       body: JSON.stringify({'apiKey':apiKey, 'secretKey':secretKey, 'asset':asset, 'leverage':leverage, 'marginMode':marginMode, 'baseOrderSize':baseOrderSize, 'maxTradeCount':maxTradeCount, 'rsiLength':rsiLength, 'rsiUpper':rsiUpper, 'rsiLower':rsiLower, 'safetyOrderStep':safetyOrderStep, 'takeProfit':takeProfit, 'timeFrame':timeFrame, 'safetyOrderVolumeScale':safetyOrderVolumeScale})

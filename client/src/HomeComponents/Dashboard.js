@@ -43,7 +43,7 @@ function Dashboard() {
     }
 
     async function onStartClicked(){
-        const response = await fetch('http://192.168.0.5:8080/start-bot')
+        const response = await fetch('http://localhost:8080/start-bot')
         const data=await response.json()
         if (data=='1'){
             alert('Bot Started Successfully')
@@ -55,7 +55,7 @@ function Dashboard() {
     }
 
     async function onStopClicked(){
-        const response = await fetch('http://192.168.0.5:8080/stop-bot')
+        const response = await fetch('http://localhost:8080/stop-bot')
         const data=await response.json()
         if (data=='1'){
             alert('Bot Started Successfully')
