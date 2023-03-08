@@ -13,7 +13,7 @@ function Users() {
     const [usersLoaded, setusersLoaded] = useState(false)
 
     async function getUsers(){
-        const response=await fetch('http://localhost:8080/admin-get-users')
+        const response=await fetch('http://20.193.147.19:8080/admin-get-users')
         const data= await response.json()
         console.log(data)
         setusers(JSON.stringify(data))
@@ -25,7 +25,7 @@ function Users() {
     async function remAccount(user){
         const resp=window.confirm('Are You Sure, You Want to Remove '+user+' Permenantly?')
         if (resp){
-            await fetch(`http://localhost:8080/removeAccount?user=${user}`)
+            await fetch(`http://20.193.147.19:8080/removeAccount?user=${user}`)
             window.location.reload()
         }
     }

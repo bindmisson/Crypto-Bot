@@ -9,7 +9,7 @@ function Refer() {
     const [ridLoaded, setridLoaded] = useState(false)
 
     async function loadRid(){
-        const response=await fetch(`http://localhost:8080/getReferralId?key=${document.cookie}`)
+        const response=await fetch(`http://20.193.147.19:8080/getReferralId?key=${document.cookie}`)
         const data=await response.json()
         setridLoaded(true)
         setrid(data)
@@ -27,7 +27,7 @@ function Refer() {
         <div className="referTxt">Refer to Someone and get a Whopping 10% of their First License Tier Purchase!</div>
         <div className="referSomeone">
             <h2 className="referSomeoneHeading">Refer To Someone</h2>
-            <form action="http://localhost:8080/refer" method='post' className="referSomeoneForm">
+            <form action="http://20.193.147.19:8080/refer" method='post' className="referSomeoneForm">
                 <div className="referSomeoneFormDiv">
                 <div className="refNameDiv">
                 <label htmlFor="" className="refNameLbl">Name</label>

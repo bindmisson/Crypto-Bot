@@ -8,7 +8,7 @@ function Queries() {
     const [queriesLoaded, setqueriesLoaded] = useState(false)
 
     async function loadQueries(){
-        const response=await fetch('http://localhost:8080/getQueries')
+        const response=await fetch('http://20.193.147.19:8080/getQueries')
         const data=await response.json()
         console.log(data)
 
